@@ -1,92 +1,69 @@
-// NODE.JS
-
+// Importing necessary modules
 import express from 'express';
 import cors from 'cors';
-import bodyParser from 'body-parser';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
 import 'dotenv/config';
 import OpenAI from 'openai';
 
+// Initialize Express app
 const app = express();
 
+// Middleware
 app.use(cors());
 app.use(express.json());
 
-const port = process.env.PORT || 3001
-const __filename = fileURLToPath(import.meta.url); //go to this url and serve that
+// Configuration
+const port = process.env.PORT || 3001;
+const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-app.use(bodyParser.json());
-
+// Serve static files
 app.use(express.static(join(__dirname, 'public')));
 
+// Root endpoint
 app.get('/', (req, res) => {
   res.sendFile(join(__dirname, 'index.html'));
 });
 
-app.post('/submit', (req, res) => {
+// Submit endpoint
+app.post('/submit', async (req, res) => {
+  let input = req.body.input;
 
-  // console.log(req.body)
-  let input = req.body.input
-
-  let gptResponse = 'failed to generate output.. Please try again..'
-
-  console.log("--GPT info sending...")
-  async function getGptResultAsString(input) {
-    try {
-      const result = await gpt(input);
-      return JSON.stringify(result);
-    } catch (error) {
-      console.error('Error:', error);
-    }
+  try {
+    const gptResponse = await getGptResultAsString(input);
+    res.json({ gpt: gptResponse });
+  } catch (error) {
+    console.error('Error:', error);
+    res.status(500).json({ error: 'Failed to generate output. Please try again.' });
   }
-
-  getGptResultAsString(input).then(response => {
-    gptResponse = response
-    console.log(`--GPT promise processed`)
-  });
-
-  setTimeout(async () => {
-    console.log(`--RIGHT BEFORE respnose json`)
-    const response = {
-      gpt: `${gptResponse}`
-    }
-    res.json(response)
-  }, 5000);
 });
 
-app.listen(port, () => {
-  console.log(`Server running on port ${port}`)
-})
-
-// ----------GPT ---------- //
-// ----------GPT ---------- //
-// ----------GPT ---------- //
-// ----------GPT ---------- //
-// ----------GPT ---------- //
-
-const openai = new OpenAI({
-  apiKey: process.env.GPTAPIKEY, //api key
-});
-
-async function gpt(input) {
-  console.log("--GPT info received...")
-  // Non-streaming:
-  const completion = await openai.chat.completions.create({
-    messages: [
-      {
-        role: 'user',
-        content: `please say this is a test`
-      }
-    ],
-    model: 'gpt-3.5-turbo-1106',
-    // response_format: { type: "json_object" },
+// Function to get GPT-3 result
+async function getGptResultAsString(input) {
+  const openai = new OpenAI({
+    apiKey: process.env.GPTAPIKEY,
   });
-  console.log("--GPT Result:")
-  // console.log(completion.choices[0]?.message?.content);
-  let gptResult = completion.choices[0]?.message?.content
-  console.log(gptResult)
-  return gptResult
+
+  try {
+    const completion = await openai.chat.completions.create({
+      messages: [
+        {
+          role: 'user',
+          content: input // Ensure dynamic input is used here
+        }
+      ],
+      model: 'gpt-3.5-turbo-1106',
+    });
+
+    return completion.choices[0]?.message?.content || 'No response received from GPT-3.';
+  } catch (error) {
+    console.error('GPT-3 Error:', error);
+    throw error; // Rethrow the error to be caught in the endpoint
+  }
 }
 
+// Start server
+app.listen(port, () => {
+  console.log(`Server running on port ${port}`);
+});
