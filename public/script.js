@@ -79,28 +79,34 @@ const loadPuzzle = function() {
 // ---------- TERMINAL ---------- //
 // ---------- TERMINAL ---------- //
 
-$('#commandDiv').terminal({
-  start: async function () {
-    // this.echo("");
-    loadPuzzle.call(this);
-  },
 
-}, {
-  greetings: `
-Welcome visitor,
+document.fonts.ready.then(() => {
+  const term = 
+  $('#commandDiv').terminal({
+    start: async function () {
+      // this.echo("");
+      loadPuzzle.call(this);
+    },
+
+  }, {
+    greetings: `Welcome visitor,
 This is Eva's Terminal -- The brain(back-end) of Eva
-  
-Here, I, a character from Spider Mansion, will be playing my favorite game —lateral thinking puzzles— with you.
-  
+    
+Here, I will be playing my favorite game —lateral thinking puzzles— with you.
+
+In a lateral thinking puzzle game, players devise solutions to riddles or scenarios by creatively piecing together facts to find a unique answer.
+    
 Game Rule: 
   * I will present a scenario.
   * Your goal is to solve the puzzle by using the clues in the scenario and asking me questions.
   * You can ask me any question related to the scenario, but I can only answer with "Yes," "No," or "Doesn't relate."
-  
+    
 With the rule stated.. let's start :)
+    `});
+    term.exec('start');
+});
 
-to start, please type start
-  `});
+github('jcubic/jquery.terminal');
 
 // ---------- GPT ---------- //
 // ---------- GPT ---------- //
