@@ -13,9 +13,9 @@ const puzzles = [
   },
   {
     setup:
-      "A man pushes his car until he reaches a hotel. When he arrives, he realizes he’s bankrupt. What happened?",
+      "A man pushes his car until he reaches a hotel. When he arrives, he realizes he's bankrupt. What happened?",
     solution:
-      "He’s playing Monopoly and his piece is the car. He lands on a space with a hotel and doesn’t have the money to pay the fee.",
+      "He's playing Monopoly and his piece is the car. He lands on a space with a hotel and doesn't have the money to pay the fee.",
   },
 ];
 
@@ -89,21 +89,35 @@ document.fonts.ready.then(() => {
     },
 
   }, {
-    greetings: `Welcome visitor,
-This is Eva's Terminal -- The brain(back-end) of Eva
     
-Here, I will be playing my favorite game —lateral thinking puzzles— with you.
+  greetings: `Welcome visitor,
+This is Eva's Terminal, The brain(back-end) of Eva`});
+  
+    setTimeout(function() {
+      term.echo(`\nHere, I will be playing my favorite game —lateral thinking puzzles— with you.`);
+    }, 1500);
 
-In a lateral thinking puzzle game, players devise solutions to riddles or scenarios by creatively piecing together facts to find a unique answer.
+    setTimeout(function() {
+      term.echo(`\nIn a lateral thinking puzzle game, players devise solutions to riddles or scenarios by creatively piecing together facts to find a unique answer.`);
+    }, 3000);
+
+    setTimeout(function() {
+      term.echo(`\nGame Rule:    
+   * I will present a scenario. 
+   * Your goal is to solve the puzzle by using the clues in the scenario and asking me questions. 
+   * You can ask me any question related to the scenario, but I can only answer with "Yes," "No," or "Doesn't relate."
+      `);
+    }, 6000);
+
+    setTimeout(function() {
+      term.echo(`\nWith the rule stated... let's start :)`);
+    }, 12000);
+
+    setTimeout(function() {
+      term.exec('start'); //start the "start function without having the user type start"
+    }, 13000);
+
     
-Game Rule: 
-  * I will present a scenario.
-  * Your goal is to solve the puzzle by using the clues in the scenario and asking me questions.
-  * You can ask me any question related to the scenario, but I can only answer with "Yes," "No," or "Doesn't relate."
-    
-With the rule stated.. let's start :)
-    `});
-    term.exec('start');
 });
 
 github('jcubic/jquery.terminal');
@@ -175,3 +189,4 @@ async function requestGPT(input, setup, solution) {
     return "Error in submitting data.";
   }
 }
+
