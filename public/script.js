@@ -114,7 +114,7 @@ This is Eva's Terminal, The brain(back-end) of Eva`});
     }, 12000);
 
     setTimeout(function() {
-      term.exec('start'); //start the "start function without having the user type start"
+      term.exec('start'); //start the "start" function without having the user type start
     }, 13000);
 
     
@@ -122,11 +122,11 @@ This is Eva's Terminal, The brain(back-end) of Eva`});
 
 github('jcubic/jquery.terminal');
 
-// ---------- GPT ---------- //
-// ---------- GPT ---------- //
-// ---------- GPT ---------- //
-// ---------- GPT ---------- //
-// ---------- GPT ---------- //
+// ---------- AI ---------- //
+// ---------- AI ---------- //
+// ---------- AI ---------- //
+// ---------- AI ---------- //
+// ---------- AI ---------- //
 
 async function playPuzzle(puzzle) {
   // this.echo("");
@@ -137,7 +137,7 @@ async function playPuzzle(puzzle) {
 
   const terminal = this;
 
-  // Main player QA loop, adapted for jQuery Terminal
+  // Main player QA loop
   while (true) {
     const userInput = await new Promise((resolve) => {
       terminal.push(function(input) {
@@ -148,7 +148,7 @@ async function playPuzzle(puzzle) {
     });
 
     // Pass the current puzzle's setup and solution along with the user input
-    const aiResponse = await requestGPT(userInput, puzzle.setup, puzzle.solution);
+    const aiResponse = await requestAI(userInput, puzzle.setup, puzzle.solution);
 
     terminal.echo(`
 Eva
@@ -163,30 +163,30 @@ Eva
   }
 }
 
-async function requestGPT(input, setup, solution) {
-  console.log(`--requestGPT started --input: ${input}`);
+async function requestAI(input, setup, solution) {
+  console.log(`--requestAI started --input: ${input}`);
 
-  // Use the evaluationPrompt function to create a prompt for the GPT model
   const prompt = evaluationPrompt(setup, solution, input);
 
-  // Make the POST request with the corrected payload
+  // Make the POST request
   const response = await fetch('/submit', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify({ input: prompt }) // Corrected here
+    body: JSON.stringify({ input: prompt }) 
   });
 
   if (response.ok) {
-    console.log("--GPT response OK");
+    console.log("--AI response OK");
     const jsonData = await response.json();
-    const gptResponse = jsonData.gpt; // Assuming the backend returns the GPT response under a "gpt" key
-    console.log(gptResponse);
-    return gptResponse;
+    const aiModResponse = jsonData.ai; 
+    console.log(aiModResponse);
+    return aiModResponse;
   } else {
     console.error("Error in submitting data.");
     return "Error in submitting data.";
   }
 }
+
 

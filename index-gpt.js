@@ -1,3 +1,6 @@
+// ---------- GPT API ---------- //
+// npm run gpt
+
 import express from 'express';
 import cors from 'cors';
 import { fileURLToPath } from 'url';
@@ -24,8 +27,8 @@ app.post('/submit', async (req, res) => {
   let input = req.body.input;
 
   try {
-    const gptResponse = await getGptResultAsString(input);
-    res.json({ gpt: gptResponse });
+    const aiResponse = await getGptResultAsString(input);
+    res.json({ ai: aiResponse });
   } catch (error) {
     console.error('Error:', error);
     res.status(500).json({ error: 'Failed to generate output. Please try again.' });
@@ -33,6 +36,8 @@ app.post('/submit', async (req, res) => {
 });
 
 async function getGptResultAsString(input) {
+  console.log("--Run GPT")
+  
   const openai = new OpenAI({
     apiKey: process.env.GPTAPIKEY,
   });
@@ -46,6 +51,7 @@ async function getGptResultAsString(input) {
         }
       ],
       model: 'gpt-4-1106-preview',
+      temperature: 0.1,
     });
 
     return completion.choices[0]?.message?.content || 'No response received from GPT-3.';
@@ -59,8 +65,8 @@ app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });
 
-// npm run develop
-
-
-
-
+// ---------- GPT API ---------- //
+// ---------- GPT API ---------- //
+// ---------- GPT API ---------- //
+// ---------- GPT API ---------- //
+// ---------- GPT API ---------- //
