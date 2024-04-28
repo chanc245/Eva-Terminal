@@ -79,7 +79,6 @@ const loadPuzzle = function() {
 // ---------- TERMINAL ---------- //
 // ---------- TERMINAL ---------- //
 
-
 document.fonts.ready.then(() => {
   const term = 
   $('#commandDiv').terminal({
@@ -150,8 +149,7 @@ async function playPuzzle(puzzle) {
     // Pass the current puzzle's setup and solution along with the user input
     const aiResponse = await requestAI(userInput, puzzle.setup, puzzle.solution);
 
-    terminal.echo(`
-Eva
+    terminal.echo(`\nEva
   ${aiResponse}
 
     `);
@@ -189,4 +187,4 @@ async function requestAI(input, setup, solution) {
   }
 }
 
-
+//npm run gem
