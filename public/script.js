@@ -11,7 +11,8 @@ const puzzles = [
       The weather was cold before. 
       No one died. 
       Human was invloved, but they didn't put the objects on the yard. 
-      The rocks was relatively small.`,
+      The rocks was relatively small.
+      The items have been there for a long time`,
     keyword:
       `snowman`
   },
