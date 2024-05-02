@@ -11,8 +11,7 @@ const puzzles = [
       The weather was cold before. 
       No one died. 
       Human was invloved, but they didn't put the objects on the yard. 
-      The rocks was relatively small. 
-      `,
+      The rocks was relatively small.`,
     keyword:
       `snowman`
   },
@@ -36,8 +35,7 @@ const puzzles = [
       The bartender welcomed the man to come in.
       The man was welcomed in the bar.
       The scenario does not involve the gang.
-      The bartender does not have the intention to shoot the man.
-      `,
+      The bartender does not have the intention to shoot the man.`,
     keyword:
       `hiccup`
   },
@@ -58,8 +56,7 @@ const puzzles = [
       The man is playing a game with his friend.
       The friend is related to how the man went bankrupt.
       The man was not bankrupt before his car reached the hotel.
-      The whole situation is in a game.
-      `,
+      The whole situation is in a game.`,
     keyword:
       `monopoly`
   },
@@ -77,13 +74,14 @@ const evaluationPrompt = (setup, solution, userInput, clue, keyword) =>
   You should respond to the player's guesses with only "yes," "no," or "doesn't relate."
   If the player asks something unrelated to the puzzle, say "doesn't relate."
   If the player ask for hint, say something from: ${clue}
-  If the keyword: ${keyword} is guessed, explain the answer: ${solution}, and say: "That's correct."
+  If the keyword: "${keyword}" is guessed, explain the answer: "${solution}", and say: "That's correct."
   If the player answers correctly, say: "That's Correct!"
   
   Allow misspellings.
   Be lenient in judging the player's answers.
   
-  The player's current guess is: ${userInput}.
+  Respond with ONLY "yes," "no," or "doesn't relate."
+  The player's current guess is: "${userInput}".
 `;
 
 const evaEnding = "\nYou can leave now.. I will be waiting for your next visit... :)\n(to restart, refresh the page.)"
@@ -122,6 +120,35 @@ const loadPuzzle = function() {
   });
 };
 
+function startingConversation(term) {
+  setTimeout(function() {
+    term.echo(`\nHere, I will be playing my favorite game —lateral thinking puzzles— with you.`);
+  }, 1500);
+
+  setTimeout(function() {
+    term.echo(`\nIn a lateral thinking puzzle game, players devise solutions to riddles or scenarios by creatively piecing together facts to find a unique answer.`);
+  }, 3000);
+
+  setTimeout(function() {
+    term.echo(`\nGame Rule:    
+ * I will present a scenario. 
+ * Your goal is to solve the puzzle by using the clues in the scenario and asking me questions. 
+ * You can ask me any question related to the scenario, but I can only answer with "Yes," "No," or "Doesn't relate."
+  (Hint: Try to ask yes-or-no questions for the best results!)
+  (Hint: You can ask for a hint if you really can't figure out the answer.)
+    `);
+  }, 6000);
+
+  setTimeout(function() {
+    term.echo(`\nWith the rule stated... let's start :)`);
+  }, 12000);
+
+  setTimeout(function() {
+    term.exec('start'); //start the "start" function without having the user type start
+  }, 13000);
+
+}
+
 // ---------- TERMINAL ---------- //
 // ---------- TERMINAL ---------- //
 // ---------- TERMINAL ---------- //
@@ -140,34 +167,10 @@ document.fonts.ready.then(() => {
     
   greetings: `Welcome visitor,
 This is Eva's Terminal, The brain(back-end) of Eva`});
-  
-    setTimeout(function() {
-      term.echo(`\nHere, I will be playing my favorite game —lateral thinking puzzles— with you.`);
-    }, 1500);
 
-    setTimeout(function() {
-      term.echo(`\nIn a lateral thinking puzzle game, players devise solutions to riddles or scenarios by creatively piecing together facts to find a unique answer.`);
-    }, 3000);
+  startingConversation(term); 
 
-    setTimeout(function() {
-      term.echo(`\nGame Rule:    
-   * I will present a scenario. 
-   * Your goal is to solve the puzzle by using the clues in the scenario and asking me questions. 
-   * You can ask me any question related to the scenario, but I can only answer with "Yes," "No," or "Doesn't relate."
-    (Hint: Try to ask yes-or-no questions for the best results!)
-    (Hint: You can ask for a hint if you really can't figure out the answer.)
-      `);
-    }, 6000);
-
-    setTimeout(function() {
-      term.echo(`\nWith the rule stated... let's start :)`);
-    }, 12000);
-
-    setTimeout(function() {
-      term.exec('start'); //start the "start" function without having the user type start
-    }, 13000);
-
-    
+  // term.exec('start'); //debug only!!!
 });
 
 // github('jcubic/jquery.terminal');
@@ -202,7 +205,6 @@ async function playPuzzle(puzzle) {
 
     terminal.echo(`\nEva
   ${aiResponse}
-
     `);
 
     // console.log(`--aiResponse.includes(correct): ${aiResponse.toLowerCase().includes("correct")}`) //correct detection 
