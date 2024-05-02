@@ -31,6 +31,8 @@ We integrated Gemini API data into a node.js application to create a chat-box-st
 
 [node.js](https://nodejs.org/)
 
+[jquery.terminal](https://github.com/jcubic/jquery.terminal)
+
 ##
 ### This Game Is Build From Havenever Studio's up Comming Game - *Spider Mansion*
 
