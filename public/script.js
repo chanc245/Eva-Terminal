@@ -1,43 +1,89 @@
 const puzzles = [
   {
     setup:
-      "A man walks into a bar and asks the bartender for a glass of water. The bartender pulls out a gun and points it at the man. The man says, “Thank you” and walks out.",
+      "Two piece of rock, a carrot, and a scarf are lying on the yard. Nobody put them on the yard but there is a perfectly logical reason why they should be there. What is it?",
     solution:
-      "The man had hiccups and the gun scared them out of him, to which he said, “Thank you.”",
+      "A snowman was built in the yard, and the snow has since melted, leaving the eyes, nose, mouth, and scarf on the ground.",
+    clue:
+      `No one leave two piece of rock, a carrot, and a scarf on the floor. 
+      No animals was invloved. 
+      The weather is hot right now. 
+      The weather was cold before. 
+      No one died. 
+      Human was invloved, but they didn't put the objects on the yard. 
+      The rocks was relatively small. 
+      `,
+    keyword:
+      `snowman`
   },
   {
     setup:
-      "Two piece of rock, a carrot, and a scarf are lying on the lawn. Nobody put them on the lawn but there is a perfectly logical reason why they should be there. What is it?",
+      "A man walks into a bar and asks the bartender for a glass of water. The bartender pulls out a gun and points it at the man. The man says, “Thank you” and walks out.",
     solution:
-      "No one leave two piece of rock, a carrot, and a scarf on the floor. A snowman was built in the yard, and the snow has since melted, leaving the eyes, nose, mouth, and scarf on the ground.",
+      "The man had hiccups and the gun scared hiccups out of him, to which the man said, “Thank you.” to the bartender",
+    clue:
+      `The bartender was not threatening the man. 
+      The bartender did not shoot the man. 
+      The man was not thirsty. 
+      No one died. 
+      The bartender helped the man.
+      The water is related to the man’s condition.
+      The man doesn't have the gun.
+      The man didn't ask any other question.
+      The gun is real.
+      The man was scared and surprised. 
+      The bartender said nothing.
+      The bartender welcomed the man to come in.
+      The scenario does not invlove the gang.
+      `,
+    keyword:
+      `hiccup`
   },
   {
     setup:
       "A man pushes his car until he reaches a hotel. When he arrives, he realizes he's bankrupt. What happened?",
     solution:
       "He's playing Monopoly and his piece is the car. He lands on a space with a hotel and doesn't have the money to pay the fee.",
+    clue:
+      `The location of the car is related to the bankruptcy.
+      The bankruptcy is related to the hotel.
+      The man's real-life bank balance doesn't relate.
+      The car is not an actual car.
+      The man does not live in the hotel.
+      There's no one in the hotel.
+      Someone the man knows owns the hotel.
+      The man didn't pay for the hotel.
+      The man is playing Monopoly with his friend.
+      The friend is related to how the man went bankrupt.
+      The whole situation is not in real life.
+      `,
+    keyword:
+      `monopoly`
   },
 ];
 
-const evaluationPrompt = (setup, solution, userInput) =>
+const evaluationPrompt = (setup, solution, userInput, clue, keyword) =>
   `
-  You are an AI assisting in a puzzle game. 
-  you speaks in a calm, thoughtful manner, often using metaphors.
-
-  The current puzzle for the player to guess is: ${setup}
-  The answer is: ${solution}
+  You are an AI assisting in a puzzle game.
+  You speak in a calm, thoughtful manner, often using metaphors.
   
-  You should respond to the player’s guesses with only "yes", "no", or "doesn't relate".
-  If the player ask something unrelated to the puzzle say "doesn't relate"
-  If the player answers correctly say: That's Correct!  
-
+  The current puzzle for the player to guess is: ${setup}.
+  The answer is: ${solution}.
+  Some additional clues are: ${clue}.
+  
+  You should respond to the player's guesses with only "yes," "no," or "doesn't relate."
+  If the player asks something unrelated to the puzzle, say "doesn't relate."
+  If the player ask for hint, say something from: ${clue}
+  If the keyword: ${keyword} is guessed, explain the answer: ${solution}, and say: "That's correct."
+  If the player answers correctly, say: "That's Correct!"
+  
   Allow misspellings.
-  Be a easy judge on the player's answer.
-
-  player's current guess is: ${userInput}
+  Be lenient in judging the player's answers.
+  
+  The player's current guess is: ${userInput}.
 `;
 
-const evaEnding = "\nYou can leave now.. I will be waiting for your next visit... :)"
+const evaEnding = "\nYou can leave now.. I will be waiting for your next visit... :)\n(to restart, refresh the page.)"
 
 let currentPuzzleIndex = 0;
 
@@ -105,6 +151,7 @@ This is Eva's Terminal, The brain(back-end) of Eva`});
    * I will present a scenario. 
    * Your goal is to solve the puzzle by using the clues in the scenario and asking me questions. 
    * You can ask me any question related to the scenario, but I can only answer with "Yes," "No," or "Doesn't relate."
+    (Hint: You can ask for a hint if you really can't figure out the answer.)
       `);
     }, 6000);
 
@@ -147,7 +194,7 @@ async function playPuzzle(puzzle) {
     });
 
     // Pass the current puzzle's setup and solution along with the user input
-    const aiResponse = await requestAI(userInput, puzzle.setup, puzzle.solution);
+    const aiResponse = await requestAI(userInput, puzzle.setup, puzzle.solution, puzzle.clue, puzzle.keyword);
 
     terminal.echo(`\nEva
   ${aiResponse}
@@ -163,10 +210,10 @@ async function playPuzzle(puzzle) {
   }
 }
 
-async function requestAI(input, setup, solution) {
+async function requestAI(input, setup, solution, clue, keyword) {
   console.log(`--requestAI started --input: ${input}`);
 
-  const prompt = evaluationPrompt(setup, solution, input);
+  const prompt = evaluationPrompt(setup, solution, input, clue, keyword);
 
   // Make the POST request
   const response = await fetch('/submit', {
