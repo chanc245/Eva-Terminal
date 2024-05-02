@@ -26,15 +26,17 @@ const puzzles = [
       The bartender did not shoot the man. 
       The man was not thirsty. 
       No one died. 
-      The bartender helped the man.
-      The water is related to the man’s condition.
-      The man doesn't have the gun.
-      The man didn't ask any other question.
+      The bartender helped the man. 
+      The water is related to the man's condition. 
+      The man doesn't have the gun. 
+      The man didn't ask any other questions. 
       The gun is real.
-      The man was scared and surprised. 
+      The man was scared and surprised.
       The bartender said nothing.
       The bartender welcomed the man to come in.
-      The scenario does not invlove the gang.
+      The man was welcomed in the bar.
+      The scenario does not involve the gang.
+      The bartender does not have the intention to shoot the man.
       `,
     keyword:
       `hiccup`
@@ -50,12 +52,13 @@ const puzzles = [
       The man's real-life bank balance doesn't relate.
       The car is not an actual car.
       The man does not live in the hotel.
-      There's no one in the hotel.
+      There is no one in the hotel.
       Someone the man knows owns the hotel.
       The man didn't pay for the hotel.
-      The man is playing Monopoly with his friend.
+      The man is playing a game with his friend.
       The friend is related to how the man went bankrupt.
-      The whole situation is not in real life.
+      The man was not bankrupt before his car reached the hotel.
+      The whole situation is in a game.
       `,
     keyword:
       `monopoly`
@@ -151,6 +154,7 @@ This is Eva's Terminal, The brain(back-end) of Eva`});
    * I will present a scenario. 
    * Your goal is to solve the puzzle by using the clues in the scenario and asking me questions. 
    * You can ask me any question related to the scenario, but I can only answer with "Yes," "No," or "Doesn't relate."
+    (Hint: Try to ask yes-or-no questions for the best results!)
     (Hint: You can ask for a hint if you really can't figure out the answer.)
       `);
     }, 6000);
@@ -166,7 +170,7 @@ This is Eva's Terminal, The brain(back-end) of Eva`});
     
 });
 
-github('jcubic/jquery.terminal');
+// github('jcubic/jquery.terminal');
 
 // ---------- AI ---------- //
 // ---------- AI ---------- //
