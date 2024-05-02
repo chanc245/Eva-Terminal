@@ -1,6 +1,6 @@
 # Eva Terminal
 
-![Eva Terminal banner](/assets/eav_terminal_banner.png)
+![Eva Terminal banner](assets/eva_terminal_banner_v2.jpg)
 
 [**Try this demo!**](https://eva-terminal-demo.onrender.com/)
 
