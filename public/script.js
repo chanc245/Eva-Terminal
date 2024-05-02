@@ -9,7 +9,7 @@ const puzzles = [
     setup:
       "Two piece of rock, a carrot, and a scarf are lying on the lawn. Nobody put them on the lawn but there is a perfectly logical reason why they should be there. What is it?",
     solution:
-      "A snowman was built in the yard, and the snow has since melted, leaving the eyes, nose, mouth, and scarf on the ground.",
+      "No one leave two piece of rock, a carrot, and a scarf on the floor. A snowman was built in the yard, and the snow has since melted, leaving the eyes, nose, mouth, and scarf on the ground.",
   },
   {
     setup:
