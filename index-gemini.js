@@ -36,12 +36,14 @@ app.post('/submit', async (req, res) => {
 });
 
 async function getGenResultAsString(input) {
-  // console.log(`--User input: [${input}]`);
+  console.log(`--User input: [${input}]` );
   console.log("--Gemini Request Sent");
   
   const genAI = new GoogleGenerativeAI(process.env.GOOGLEAPIKEY);
 
-  const model = genAI.getGenerativeModel({ model: "gemini-1.5-pro-latest"});
+  // const model = genAI.getGenerativeModel({ model: "gemini-1.5-pro-latest"});
+  //gemini-1.5-pro-latest -> better but too easy to exhaust 
+  const model = genAI.getGenerativeModel({ model: "gemini-pro"}); 
 
   const prompt = input;
 
