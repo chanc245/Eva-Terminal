@@ -154,7 +154,9 @@ async function playPuzzle(puzzle) {
 
     `);
 
-    if (aiResponse.trim() === "That's Correct!") {
+    // console.log(`--aiResponse.includes(correct): ${aiResponse.toLowerCase().includes("correct")}`) //correct detection 
+
+    if (aiResponse.toLowerCase().includes("correct")){
       terminal.pop();
       break;
     }
@@ -179,7 +181,7 @@ async function requestAI(input, setup, solution) {
     console.log("--AI response OK");
     const jsonData = await response.json();
     const aiModResponse = jsonData.ai; 
-    console.log(aiModResponse);
+    console.log(`==Gemini Output: ${aiModResponse}`);
     return aiModResponse;
   } else {
     console.error("Error in submitting data.");

@@ -36,8 +36,9 @@ app.post('/submit', async (req, res) => {
 });
 
 async function getGenResultAsString(input) {
-  console.log("--Run Gemini")
-
+  // console.log(`--User input: [${input}]`);
+  console.log("--Gemini Request Sent");
+  
   const genAI = new GoogleGenerativeAI(process.env.GOOGLEAPIKEY);
 
   const model = genAI.getGenerativeModel({ model: "gemini-pro"});
@@ -47,6 +48,8 @@ async function getGenResultAsString(input) {
   const result = await model.generateContent(prompt);
   const response = await result.response;
   const text = response.text();
+
+  console.log(`==Gemini Output: [${text}]`);
 
   return text;
 }
