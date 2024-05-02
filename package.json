@@ -1,8 +1,8 @@
 {
-  "name": "arachnid_spidermansion",
+  "name": "eva-terminal",
   "version": "1.0.0",
-  "description": "Arachnid AI",
-  "main": "index.js",
+  "description": "eva terminal",
+  "main": "index-gemini.js",
   "type": "module",
   "scripts": {
     "start": "node index-gemini.js",
