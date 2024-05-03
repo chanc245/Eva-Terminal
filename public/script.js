@@ -5,14 +5,17 @@ const puzzles = [
     solution:
       "A snowman was built in the yard, and the snow has since melted, leaving the eyes, nose, mouth, and scarf on the ground.",
     clue:
-      `No one leave two piece of rock, a carrot, and a scarf on the floor. 
-      No animals was invloved. 
+      `No one left two piece of rock, a carrot, and a scarf on the floor. 
+      No animals were invloved. 
       The weather is hot right now. 
       The weather was cold before. 
       No one died. 
-      Human was invloved, but they didn't put the objects on the yard. 
-      The rocks was relatively small.
-      The items have been there for a long time`,
+      A human was invloved, but they didn't put the objects on the yard. 
+      The rocks are relatively small.
+      The items have been there for a long time.
+      All objects are related to a human.
+      All objects are used for a purpose.
+      The scarf was worn by something.`,
     keyword:
       `snowman`
   },

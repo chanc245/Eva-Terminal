@@ -24,27 +24,28 @@ The AI(Eva) presents a scenario, and the player’s goal is to solve the puzzle 
 ### How We Built It
 We integrated Gemini API data into a node.js application to create a chat-box-style terminal. This setup prompts Gemini with the necessary scenario setup and solution. The AI then evaluates the player's questions and provides relevant responses based on how closely they align with the correct answer.
 
+## References
+* [Gemini API](https://ai.google.dev/)
+* [Node.js](https://nodejs.org/)
+* [Express.js](https://expressjs.com/)
+* [jquery.terminal](https://github.com/jcubic/jquery.terminal)
+
 ##
-### Dependencies
-
-[Gemini API](https://ai.google.dev/)
-
-[node.js](https://nodejs.org/)
-
-[jquery.terminal](https://github.com/jcubic/jquery.terminal)
+## Meet The Team
+* Angela Jung: [Github](https://github.com/jjekak) [Portfolio](https://angelajung.cargo.site/)
+* Seawon Kim: [Portfolio](https://c1portfolio.cargo.site/)
+* Seobin Park: [Github](https://github.com/bunnybini) [Portfolio](https://binibunny.com/)
+* Chris Chang: [Github]() [Portfolio](https://chrisc.bio/)
 
 ##
 ### This Game Is Build From Havenever Studio's up Comming Game - *Spider Mansion*
 
 #### Learn more about Spider Mansion!
-[Spider Mansion Offical Website](https://spidermansion.cargo.site/)
-
-[Spider Mansion Kickstarter](https://www.kickstarter.com/projects/havenever/spider-mansion)
-
-[Spider Mansion Web Demo Git Hub Page](https://github.com/chanc245/SpiderMansionWebDemo)
+* [Spider Mansion Offical Website](https://spidermansion.cargo.site/)
+* [Spider Mansion Kickstarter](https://www.kickstarter.com/projects/havenever/spider-mansion)
+* [Spider Mansion Web Demo Git Hub Page](https://github.com/chanc245/SpiderMansionWebDemo)
 
 #### Spider Mansion Social Media
 * [Youtube](https://www.youtube.com/@SpiderMansionOffical)
 * [Twitter](https://twitter.com/i/flow/login?redirect_after_login=%2Fspiderm4nsion)
 * [Instagram](https://www.instagram.com/spidermansion.official/)
-

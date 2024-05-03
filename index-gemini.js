@@ -42,7 +42,7 @@ async function getGenResultAsString(input) {
   const genAI = new GoogleGenerativeAI(process.env.GOOGLEAPIKEY);
 
   // const model = genAI.getGenerativeModel({ model: "gemini-1.5-pro-latest"});
-  //gemini-1.5-pro-latest -> better but too easy to exhaust 
+  //gemini-1.5-pro-latest -> better than gemini-pro but too easy to exhaust 
   const model = genAI.getGenerativeModel({ model: "gemini-pro"}); 
 
   const prompt = input;
