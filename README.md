@@ -6,7 +6,7 @@
 
 **Participated in 2024 [Google AI Hackathon!](https://googleai.devpost.com/)**
 
-[Check out this project on Devpost!](link to be added!)
+[Check out this project on Devpost!](https://devpost.com/software/spider-mansion)
 
 ## What is Eva Terminal About?
 This game is a new take on the classic concept of *lateral thinking puzzle* games that challenge players to solve scenarios through questioning. 
