@@ -1,12 +1,12 @@
 // ---------- GPT API ---------- //
 // npm run gpt
 
-import express from 'express';
-import cors from 'cors';
-import { fileURLToPath } from 'url';
-import { dirname, join } from 'path';
-import 'dotenv/config';
-import OpenAI from 'openai';
+import express from "express";
+import cors from "cors";
+import { fileURLToPath } from "url";
+import { dirname, join } from "path";
+import "dotenv/config";
+import OpenAI from "openai";
 
 const app = express();
 
@@ -17,27 +17,29 @@ const port = process.env.PORT || 3001;
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-app.use(express.static(join(__dirname, 'public')));
+app.use(express.static(join(__dirname, "public")));
 
-app.get('/', (req, res) => {
-  res.sendFile(join(__dirname, 'index.html'));
+app.get("/", (req, res) => {
+  res.sendFile(join(__dirname, "index.html"));
 });
 
-app.post('/submit', async (req, res) => {
+app.post("/submit", async (req, res) => {
   let input = req.body.input;
 
   try {
     const aiResponse = await getGptResultAsString(input);
     res.json({ ai: aiResponse });
   } catch (error) {
-    console.error('Error:', error);
-    res.status(500).json({ error: 'Failed to generate output. Please try again.' });
+    console.error("Error:", error);
+    res
+      .status(500)
+      .json({ error: "Failed to generate output. Please try again." });
   }
 });
 
 async function getGptResultAsString(input) {
-  console.log("--Run GPT")
-  
+  console.log("--Run GPT");
+
   const openai = new OpenAI({
     apiKey: process.env.GPTAPIKEY,
   });
@@ -46,18 +48,22 @@ async function getGptResultAsString(input) {
     const completion = await openai.chat.completions.create({
       messages: [
         {
-          role: 'user',
-          content: input
-        }
+          role: "user",
+          content: input,
+        },
       ],
-      model: 'gpt-4-1106-preview',
-      temperature: 0.1,
+      model: "gpt-4.1",
+      temperature: 0.7,
+      top_p: 0.9,
     });
 
-    return completion.choices[0]?.message?.content || 'No response received from GPT-3.';
+    return (
+      completion.choices[0]?.message?.content ||
+      "No response received from GPT-4.1."
+    );
   } catch (error) {
-    console.error('GPT-3 Error:', error);
-    throw error; 
+    console.error("GPT-4.1 Error:", error);
+    throw error;
   }
 }
 
