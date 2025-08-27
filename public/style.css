@@ -338,3 +338,67 @@ body {
 .social-links img:hover {
   transform: scale(1.1);
 }
+
+/* MOBILE */
+/* MOBILE */
+/* MOBILE */
+/* MOBILE */
+/* MOBILE */
+@media (max-width: 768px) {
+  html,
+  body {
+    height: 95vh;
+    margin: 0;
+    padding: 10px;
+    overflow: hidden;
+  }
+
+  .hover-top,
+  .hover-flex-container,
+  .box-left,
+  .box-top,
+  .box-bot,
+  .social-links {
+    display: none !important;
+    pointer-events: none !important;
+  }
+
+  .container {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .flex-container {
+    width: 100%;
+    height: 100%;
+    gap: 0;
+    display: block;
+    border: 2px solid #ffffff;
+  }
+
+  .box-right {
+    width: min(92vw, 640px);
+    height: 90vh;
+    margin: 0;
+    border: 2px solid #ffffff;
+    border-radius: 8px;
+    background-color: rgb(39, 39, 39);
+    padding: 0;
+  }
+
+  .inter {
+    border: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  #commandDiv {
+    width: 100%;
+    height: 100%;
+    background-color: rgb(39, 39, 39);
+    overflow: auto;
+    border-radius: 6px;
+  }
+}
