@@ -231,9 +231,9 @@ This is Eva's Terminal, The brain(back-end) of Eva`,
     }
   );
 
-  // startingConversation(term);
+  startingConversation(term);
 
-  term.exec("start"); // DEBUG ONLY
+  // term.exec("start"); // DEBUG ONLY
 });
 
 // =========================
